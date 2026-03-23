@@ -1,6 +1,6 @@
-import { ConnectionOptions } from 'typeorm';
+import { DataSourceOptions } from 'typeorm';
 
-const config: ConnectionOptions = {
+const config: DataSourceOptions = {
   type: 'postgres',
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT || '5432'),
@@ -8,7 +8,8 @@ const config: ConnectionOptions = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
-  synchronize: true,
+  synchronize: false,
+  migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
 };
 
 export default config;
