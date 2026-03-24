@@ -57,6 +57,19 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Migrations
+
+```bash
+# drop database
+$ npm run db:drop
+
+# create migration
+$ npm run db:create --name=MIGRATION_NAME
+
+# run migration
+$ npm run db:run
+```
+
 ## Deployment
 
 When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
