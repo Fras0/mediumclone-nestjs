@@ -2,6 +2,8 @@ import {
   BeforeInsert,
   Column,
   Entity,
+  JoinTable,
+  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -11,22 +13,22 @@ import { ArticleEntity } from './../article/article.entity';
 @Entity({ name: 'users' })
 export class UserEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  username: string;
+  username!: string;
 
   @Column()
-  email: string;
+  email!: string;
 
   @Column({ default: '' })
-  bio: string;
+  bio!: string;
 
   @Column({ default: '' })
-  image: string;
+  image!: string;
 
   @Column({ select: false })
-  password: string;
+  password!: string;
 
   @BeforeInsert()
   async hashPassword() {
@@ -34,5 +36,9 @@ export class UserEntity {
   }
 
   @OneToMany(() => ArticleEntity, (article) => article.author)
-  articles: ArticleEntity[];
+  articles!: ArticleEntity[];
+
+  @ManyToMany(() => ArticleEntity)
+  @JoinTable()
+  favorites!: ArticleEntity[];
 }
